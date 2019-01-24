@@ -11,7 +11,7 @@ except:
     print "Failed to import GPIO driver! Is this running on a Raspberry Pi?"
 
 pygame.init()
-pygame.mixer.music.load('/static/audio/awake.mp3')
+pygame.mixer.music.load('/opt/pi_alarm_env/pi_alarm/app/static/audio/awake.mp3')
 
 class LightDriver(object):
     """
@@ -37,12 +37,12 @@ class LightDriver(object):
 
     def on(self):
         print "Turning light on"
-        self._control_signal(self.pin, True)
+       # self._control_signal(self.pin, True)
 	pygame.mixer.music.play(app.config['ALARM_DURATION'])
 
     def off(self):
         print "Turning light off"
-        self._control_signal(self.pin, False)
+       # self._control_signal(self.pin, False)
 	pygame.mixer.music.fadeout(1000)
 
     def _control_signal(self, pin, signal):
@@ -54,7 +54,7 @@ class LightDriver(object):
                   a current or not going to the specified pin.
         """
         try:
-            GPIO.setmode(GPIO.BOARD)
+            GPIO.setmode(GPIO.BCM)
             GPIO.setup(pin, GPIO.OUT)
             GPIO.output(pin, signal)
 
