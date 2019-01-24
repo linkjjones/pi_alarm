@@ -1,11 +1,17 @@
 from os import sys, path
 sys.path.append(path.dirname(path.dirname(path.abspath(__file__))))
 
+import pygame
+
+
 from app import app
 try:
     from RPi import GPIO
 except:
     print "Failed to import GPIO driver! Is this running on a Raspberry Pi?"
+
+pygame.init()
+pygame.mixer.music.load('/static/audio/arise.mp3')
 
 class LightDriver(object):
     """
@@ -32,10 +38,12 @@ class LightDriver(object):
     def on(self):
         print "Turning light on"
         self._control_signal(self.pin, True)
+	pygame.mixer.music.play(app.config['ALARM_DURATION'])
 
     def off(self):
         print "Turning light off"
         self._control_signal(self.pin, False)
+	pygame.mixer.music.fadeout(1000)
 
     def _control_signal(self, pin, signal):
         """
