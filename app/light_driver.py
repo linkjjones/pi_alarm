@@ -11,7 +11,7 @@ except:
     print "Failed to import GPIO driver! Is this running on a Raspberry Pi?"
 
 pygame.init()
-pygame.mixer.music.load('/static/audio/arise.mp3')
+pygame.mixer.music.load('/static/audio/awake.mp3')
 
 class LightDriver(object):
     """
