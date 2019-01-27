@@ -52,9 +52,9 @@ class Scheduler(object):
         # -- Second, create new jobs
         current_dir = os.path.abspath(\
                 os.path.dirname(os.path.realpath(__file__)) )
-        on_job = self.cron.new(command=current_dir+'/on.py',
+        on_job = self.cron.new(command='curl --silent --output /dev/null/ 192.168.0.7/on',
                 comment = "ON for %s" % weekday)
-        off_job = self.cron.new(command=current_dir+'/off.py',
+        off_job = self.cron.new(command='curl --silent --output /dev/null/ 192.168.0.7/off',
                 comment = "OFF for %s" % weekday)
 
         # -- Third, calculate the alarm times
