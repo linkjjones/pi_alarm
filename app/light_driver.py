@@ -37,12 +37,12 @@ class LightDriver(object):
 
     def on(self):
         print "Turning light on"
-       # self._control_signal(self.pin, True)
+        self._control_signal(self.pin, True)
 	pygame.mixer.music.play(app.config['ALARM_DURATION'])
 
     def off(self):
         print "Turning light off"
-       # self._control_signal(self.pin, False)
+        self._control_signal(self.pin, False)
 	pygame.mixer.music.fadeout(1000)
 
     def _control_signal(self, pin, signal):
